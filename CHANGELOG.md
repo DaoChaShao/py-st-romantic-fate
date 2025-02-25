@@ -11,6 +11,10 @@
 - add basic.py and main.py for initial application structure ([a386be0](https://github.com///commit/a386be02eeb74dd5ee30577bc6389255338da93f))
 - add initial __init__.py file with main function ([b15e398](https://github.com///commit/b15e398e6ea279c9099dc1ae9bec90ec73d3ea7b))
 
+### Chore
+
+- add CHANGELOG.md for version 0.1.0 with features, docs, and dependencies ([39b3e7c](https://github.com///commit/39b3e7c41d666ed4880e9fa2f9029e770655c114))
+
 ### Docs
 
 - add pyproject.toml for changelog configuration ([34b58af](https://github.com///commit/34b58af4ad51abf606c35fee1659d95a220d5bd2))
