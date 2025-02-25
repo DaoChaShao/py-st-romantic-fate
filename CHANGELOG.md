@@ -16,9 +16,13 @@
 - add basic.py and main.py for initial application structure ([a386be0](https://github.com///commit/a386be02eeb74dd5ee30577bc6389255338da93f))
 - add initial __init__.py file with main function ([b15e398](https://github.com///commit/b15e398e6ea279c9099dc1ae9bec90ec73d3ea7b))
 
+### Bug Fixes
+
+- correct prompt formatting and language feedback instructions in tools.py ([742ad02](https://github.com///commit/742ad023d514cd8e63eeca37f4979c90991aa2e3))
+
 ### Chore
 
-- update CHANGELOG.md with recent feature additions for couple parameter handling ([1bcfcb5](https://github.com///commit/1bcfcb5a5c1b2fcf4e447f4ac128ffe4bc5f5231))
+- update CHANGELOG.md with recent feature additions for couple parameter handling ([7c423fa](https://github.com///commit/7c423faccfd98f2c8e3e0f98b2c9302aea8d3ccb))
 - update CHANGELOG.md with recent feature additions for male and female parameter forms ([4a17c1e](https://github.com///commit/4a17c1ed72cbe9926fb9784db773e8f3321a1d93))
 - update CHANGELOG.md with recent feature additions for parameter input and display ([e0fceb3](https://github.com///commit/e0fceb3395902996663d811df45727dbb037278a))
 - add CHANGELOG.md for version 0.1.0 with features, docs, and dependencies ([349254f](https://github.com///commit/349254fb6b079947aef0e147a5e4c15d9529c66d))
