@@ -16,6 +16,7 @@
 
 ### Chore
 
+- update CHANGELOG.md with recent feature additions for male and female parameter forms ([68a8c1a](https://github.com///commit/68a8c1a127e7e548ede072ebf90c7505474b1e6b))
 - update CHANGELOG.md with recent feature additions for parameter input and display ([e0fceb3](https://github.com///commit/e0fceb3395902996663d811df45727dbb037278a))
 - add CHANGELOG.md for version 0.1.0 with features, docs, and dependencies ([349254f](https://github.com///commit/349254fb6b079947aef0e147a5e4c15d9529c66d))
 
