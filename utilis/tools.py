@@ -6,10 +6,11 @@
 # @File     :   tools.py
 # @Desc     :
 
+from datetime import datetime, date
 from openai import OpenAI
-from streamlit import (empty, header, selectbox, text_input, caption, slider,
-                       sidebar, segmented_control, form, form_submit_button, date_input,
-                       time_input)
+from streamlit import (header, selectbox, text_input, caption, slider,
+                       sidebar, segmented_control, form, form_submit_button, columns, subheader,
+                       date_input, time_input, multiselect, session_state)
 from time import perf_counter
 
 
@@ -67,6 +68,7 @@ class Timer(object):
 
     def __enter__(self):
         self._start = perf_counter()
+        print(f"{self._description} started.")
         return self
 
     def __exit__(self, *args):
@@ -80,16 +82,17 @@ class Timer(object):
             return f"{self._description} is failed to count"
 
 
-def parameters(message: empty) -> tuple[str, str, str, float, float]:
+def parameters() -> tuple[str, str, str, float, float, str, list[str]]:
     """ Set the hyperparameters for the Ollama model.
 
-    :param message: the message to display with empty placeholder of the streamlit
     :return: the model name, temperature, and top P
     """
     role: str = ""
     temp: float = 0.0
     temperature: float = 0.0
     top_p: float = 0.0
+    language: str = ""
+    methods: list[str] = []
 
     with sidebar:
         header("Hyperparameters")
@@ -127,12 +130,26 @@ def parameters(message: empty) -> tuple[str, str, str, float, float]:
 
                 top_p: int = slider("Top P", 0.0, 1.0, 0.9, disabled=True, help="The probability of the output.")
                 caption(f"The top P you selected is: **{top_p}**")
+
+                langs: list = ["English", "Chinese"]
+                language: str = selectbox("Language", langs, index=1, disabled=False,
+                                          help="Select the language used in the conversation.")
+                caption(f"The language you selected is: **{language}**")
+
+                multi: list = [
+                    "Four Pillars of Destiny Matching",
+                    "Zi Wei Dou Shu Marriage Analysis",
+                    "Qi Men Dun Jia Love Prediction",
+                    "Name Stroke Compatibility",
+                ]
+                methods: list = multiselect("Divine Method", multi, default=None, max_selections=None,
+                                            help="Select the divine method you want to use.")
+                caption(f"You select **{len(methods)}** divine methods.")
             else:
                 caption("The API key is invalid. Please enter a valid API key.")
         else:
             caption("Please enter the API key.")
-
-        return model, api_key, role, temperature, top_p
+        return model, api_key, role, temperature, top_p, language, methods
 
 
 def params_male():
@@ -148,11 +165,13 @@ def params_male():
         gender: str = selectbox("GENDER", options, help="Select the gender", index=0, disabled=True)
         caption(f"The gender you selected is **{gender}**")
 
-        date = date_input("The DATE OF MALE's BIRTH", value="today", max_value="today", help="Enter the date of birth")
-        caption(f"The date of male's birth is **{date}**")
+        birth_date = date_input("The DATE OF MALE's BIRTH", value="today",
+                                min_value=date(1925, 1, 1), max_value="today",
+                                help="Enter the date of birth")
+        caption(f"The date of male's birth is **{birth_date}**")
 
-        time = time_input("THE TIME OF MALE's BIRTH", value="now", help="Enter the time of birth")
-        caption(f"The time of male's birth is **{time}**")
+        birth_time = time_input("THE TIME OF MALE's BIRTH", value="now", help="Enter the time of birth")
+        caption(f"The time of male's birth is **{birth_time}**")
 
         location: str = text_input("MALE's BIRTH LOCATION", placeholder="Enter the location", help="Enter the location")
         caption(f"The location you entered is **{location}**")
@@ -163,8 +182,8 @@ def params_male():
             male = {
                 "name": name,
                 "gender": gender,
-                "birth_data": date.isoformat(),
-                "birth_time": time.isoformat(),
+                "birth_data": birth_date.isoformat(),
+                "birth_time": birth_time.isoformat(),
                 "location": location
             }
             return male
@@ -184,12 +203,13 @@ def params_female():
         gender: str = selectbox("GENDER", options, help="Select the gender", index=1, disabled=True)
         caption(f"The gender you selected is **{gender}**")
 
-        date = date_input("The DATE OF FEMALE's BIRTH", value="today", max_value="today",
-                          help="Enter the date of birth")
-        caption(f"The date of male's birth is **{date}**")
+        birth_date = date_input("The DATE OF FEMALE's BIRTH", value="today",
+                                min_value=date(1925, 1, 1), max_value="today",
+                                help="Enter the date of birth")
+        caption(f"The date of male's birth is **{birth_date}**")
 
-        time = time_input("THE TIME OF FEMALE's BIRTH", value="now", help="Enter the time of birth")
-        caption(f"The time of male's birth is **{time}**")
+        birth_time = time_input("THE TIME OF FEMALE's BIRTH", value="now", help="Enter the time of birth")
+        caption(f"The time of male's birth is **{birth_time}**")
 
         location: str = text_input("FEMALE's BIRTH LOCATION", placeholder="Enter the location",
                                    help="Enter the location")
@@ -201,13 +221,97 @@ def params_female():
             male = {
                 "name": name,
                 "gender": gender,
-                "birth_data": date.isoformat(),
-                "birth_time": time.isoformat(),
+                "birth_data": birth_date.isoformat(),
+                "birth_time": birth_time.isoformat(),
                 "location": location
             }
             return male
         return None
 
 
-def prompt_processor():
-    pass
+def params_couple():
+    """ Get the parameters from male and female's information """
+    with form("Couple's Information", border=True, clear_on_submit=False):
+        col_male, col_female = columns(2)
+
+        with col_male:
+            subheader("Male's Information")
+            name_male: str = text_input("MALE's NAME", value="许仙", placeholder="Enter the name",
+                                        help="Enter the name")
+            caption(f"The name you entered is **{name_male}**")
+            birth_date_male = date_input("The DATE OF MALE's BIRTH", value="today",
+                                         min_value=date(1925, 1, 1), max_value="today",
+                                         help="Enter the date of birth")
+            caption(f"The date of male's birth is **{birth_date_male}**")
+            birth_time_male = time_input("THE TIME OF MALE's BIRTH", value="now", help="Enter the time of birth")
+            caption(f"The time of male's birth is **{birth_time_male}**")
+            location_male: str = text_input("MALE's BIRTH LOCATION", value="内蒙古", placeholder="Enter the location",
+                                            help="Enter the location")
+            caption(f"The location you entered is **{location_male}**")
+
+        with col_female:
+            subheader("Female's Information")
+            name_female: str = text_input("FEMALE's NAME", value="白素贞", placeholder="Enter the name",
+                                          help="Enter the name")
+            caption(f"The name you entered is **{name_female}**")
+            birth_date_female = date_input("The DATE OF FEMALE's BIRTH", value="today",
+                                           min_value=date(1925, 1, 1), max_value="today",
+                                           help="Enter the date of birth")
+            caption(f"The date of male's birth is **{birth_date_female}**")
+            birth_time_female = time_input("THE TIME OF FEMALE's BIRTH", value="now",
+                                           help="Enter the time of birth")
+            caption(f"The time of male's birth is **{birth_time_female}**")
+            location_female: str = text_input("FEMALE's BIRTH LOCATION", value="北京", placeholder="Enter the location",
+                                              help="Enter the location")
+            caption(f"The location you entered is **{location_female}**")
+
+        submitted = form_submit_button("Submit")
+
+    if submitted:
+        session_state["couple"] = {
+            "male": {
+                "name": name_male,
+                "birth_date": birth_date_male.isoformat(),
+                "birth_time": birth_time_male.isoformat(),
+                "location": location_male
+            },
+            "female": {
+                "name": name_female,
+                "birth_date": birth_date_female.isoformat(),
+                "birth_time": birth_time_female.isoformat(),
+                "location": location_female
+            }
+        }
+        return session_state["couple"]
+    return None
+
+
+def prompt_processor(role: str, male: dict, female: dict, command: str, language: str, methods: list[str]) -> str:
+    """ Process the prompt based on the all information we get """
+    context: str = (f"You have obtained information about the male, including {male}. "
+                    f"ou have also obtained information about the female, including {female}.")
+
+    words_limit: int = 150
+
+    instructions: str = (f"As a professional Fortune Teller,"
+                         f"you should strive to provide the best analysis with all the methods in {methods}, "
+                         f"but should not mention their names explicitly. "
+                         f"Your analysis should be based on {command} and {context}, "
+                         f"and should be tailored for the couples. "
+                         f"You should give logical and reasonable points and suggestions, "
+                         f"depending on the number of methods used in {methods} "
+                         f"Each paragraph should be limited to {words_limit} words.")
+
+    formate: str = "Use Markdown format, and paragraph titles should be bold."
+
+    constraints: str = (f"You can get today’s date and time information using {datetime.now()}.. "
+                        f"If you find that either person in the couple is under 18, "
+                        f"you should terminate the analysis process. "
+                        f"Instead, you should provide suggestions encouraging them to focus on their studies and career， "
+                        f" rather than romantic relationships.")
+
+    prompt: str = (f"{role} "
+                   f"{instructions} "
+                   f"When giving suggestions,, you should follow the {formate} and {constraints}. "
+                   f"You should also take {language} into account.")
+    return prompt
