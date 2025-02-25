@@ -24,6 +24,7 @@
 
 ### Chore
 
+- update CHANGELOG.md with recent feature implementations and bug fixes ([5468738](https://github.com///commit/5468738e8572e52685f31430199b7b09e46f3fdb))
 - update CHANGELOG.md with recent feature additions for couple parameter handling ([7c423fa](https://github.com///commit/7c423faccfd98f2c8e3e0f98b2c9302aea8d3ccb))
 - update CHANGELOG.md with recent feature additions for male and female parameter forms ([4a17c1e](https://github.com///commit/4a17c1ed72cbe9926fb9784db773e8f3321a1d93))
 - update CHANGELOG.md with recent feature additions for parameter input and display ([e0fceb3](https://github.com///commit/e0fceb3395902996663d811df45727dbb037278a))
