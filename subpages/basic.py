@@ -9,8 +9,8 @@
 from streamlit import (empty, sidebar, button, columns, chat_input, spinner,
                        markdown, balloons, session_state, write, rerun)
 
-from utilis.tools import (parameters, model_caller, Timer,
-                          params_couple, prompt_processor)
+from utilis.tools import (parameters, model_deepseek, Timer,
+                          params_couple, prompt_processor, model_ollama)
 
 empty_message: empty = empty()
 
@@ -45,10 +45,12 @@ else:
                 with spinner("Fate Tell is thinking...", show_time=True):
                     with Timer(description="Fate Tell process") as timer:
                         prompt: str = prompt_processor(sys_content, male, female, command, language, methods)
-                        response: str = model_caller(model_name, api_key, temperature, top_p, sys_content, prompt)
+                        # response: str = model_deepseek(model_name, api_key, temperature, top_p, sys_content, prompt)
+                        response: str = model_ollama(sys_content, prompt)
                         markdown(response)
                         balloons()
                     empty_message.info(timer)
+                    print(timer)
             else:
                 empty_message.info("Please click the button to tell the romantic fate.")
     else:
