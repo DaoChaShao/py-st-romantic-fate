@@ -7,7 +7,10 @@
 # @Desc     :
 
 from datetime import datetime, date
+from ollama import chat
+from ollama import ChatResponse
 from openai import OpenAI
+from re import sub
 from streamlit import (header, selectbox, text_input, caption, slider,
                        sidebar, segmented_control, form, form_submit_button, columns, subheader,
                        date_input, time_input, multiselect, session_state)
@@ -25,7 +28,7 @@ def is_api_key(api_key: str) -> bool:
     return False
 
 
-def model_caller(model: str, api_key: str, temperature: float, top_p: float, content: str, prompt: str) -> str:
+def model_deepseek(model: str, api_key: str, temperature: float, top_p: float, content: str, prompt: str) -> str:
     """ Call the Ollama model locally via requests package.
 
     :param model: the model name
@@ -50,6 +53,33 @@ def model_caller(model: str, api_key: str, temperature: float, top_p: float, con
     )
     print(response.choices[0].message.content)
     return response.choices[0].message.content
+
+
+def text_suber(text: str) -> str:
+    """ Remove the special characters from the text.
+
+    :param text: the text to be processed
+    :return: the text without special characters
+    """
+    return sub(r"<think></think>", "", text)
+
+
+def model_ollama(content: str, prompt: str):
+    response: ChatResponse = chat(
+        model="deepseek-r1:8b",
+        messages=[
+            {
+                "role": "system",
+                "content": content,
+            }, {
+                "role": "user",
+                "content": prompt,
+            }],
+        stream=False,
+    )
+    result = text_suber(response["message"]["content"])
+    print(result)
+    return result
 
 
 class Timer(object):
@@ -137,10 +167,10 @@ def parameters() -> tuple[str, str, str, float, float, str, list[str]]:
                 caption(f"The language you selected is: **{language}**")
 
                 multi: list = [
-                    "Four Pillars of Destiny Matching",
-                    "Zi Wei Dou Shu Marriage Analysis",
-                    "Qi Men Dun Jia Love Prediction",
-                    "Name Stroke Compatibility",
+                    "生辰八字合婚",
+                    "紫微斗数合婚",
+                    "奇门遁甲合婚",
+                    "姓名笔画合婚",
                 ]
                 methods: list = multiselect("Divine Method", multi, default=None, max_selections=None,
                                             help="Select the divine method you want to use.")
