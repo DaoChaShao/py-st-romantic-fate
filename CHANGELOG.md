@@ -25,6 +25,7 @@
 
 ### Chore
 
+- update CHANGELOG.md for version 0.1.0 release date change ([6ffb435](https://github.com///commit/6ffb4352eff6ca582c2bd326ee7055642dc3c0c0))
 - update CHANGELOG.md with recent feature implementations and bug fixes ([1269600](https://github.com///commit/12696007d70a53833ba8dcbc657da3949178413c))
 - update CHANGELOG.md with recent feature additions for couple parameter handling ([7c423fa](https://github.com///commit/7c423faccfd98f2c8e3e0f98b2c9302aea8d3ccb))
 - update CHANGELOG.md with recent feature additions for male and female parameter forms ([4a17c1e](https://github.com///commit/4a17c1ed72cbe9926fb9784db773e8f3321a1d93))
