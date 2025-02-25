@@ -5,6 +5,8 @@
 
 ### Features
 
+- implement model_ollama for chat response handling and add text_suber for text processing ([b97692c](https://github.com///commit/b97692c7ac8b01cba817127bf160d4f3f31dfb49))
+- integrate model_ollama for response generation in basic.py ([40b9115](https://github.com///commit/40b91152c65da21ae1db446dc09f3e58a3778857))
 - enhance couple parameter handling with birth date, time inputs, and new prompt processing logic ([e28552a](https://github.com///commit/e28552acfe7114b4f76ff4fcce15057eff7be31d))
 - implement couple parameter handling and update fate telling logic in basic.py ([62be580](https://github.com///commit/62be580da95020f5574d11a81e1b80f516faac08))
 - update male and female parameter forms to include birth date and time inputs ([14b7f03](https://github.com///commit/14b7f03d16faec3d6f230ee836db2d83f005b53c))
@@ -18,7 +20,7 @@
 
 ### Bug Fixes
 
-- correct prompt formatting and language feedback instructions in tools.py ([742ad02](https://github.com///commit/742ad023d514cd8e63eeca37f4979c90991aa2e3))
+- correct prompt formatting and language feedback instructions in tools.py ([962b9f5](https://github.com///commit/962b9f5ecb7884f4b4d7a3f3bbca77a62390f038))
 
 ### Chore
 
@@ -33,6 +35,7 @@
 
 ### Dependencies
 
+- add ollama dependency to requirements.txt ([2fbce65](https://github.com///commit/2fbce652c478cd28563ac4662039e125e9c00463))
 - add git-changelog to requirements for changelog generation ([8cd24bd](https://github.com///commit/8cd24bdac8f2e6794f8ceece07c89921f1a1b929))
 - add requirements.txt with necessary dependencies ([e5f7457](https://github.com///commit/e5f7457165a31b2b344c63833a4bb136d52f8481))
 
