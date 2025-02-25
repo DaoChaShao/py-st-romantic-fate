@@ -1,7 +1,7 @@
 <!-- insertion marker -->
 <a name="0.1.0"></a>
 
-## [0.1.0](https://github.com///compare/029265f81c5e132f54ae4ecf972aa738f20f5c7a...0.1.0) (2025-02-25)
+## [0.1.0](https://github.com///compare/029265f81c5e132f54ae4ecf972aa738f20f5c7a...0.1.0) (2025-02-26)
 
 ### Features
 
@@ -20,11 +20,12 @@
 
 ### Bug Fixes
 
+- update regex in text processing to handle multiline content ([cb6daff](https://github.com///commit/cb6daffa7e8777f0d7f131a3a95bb521b026d995))
 - correct prompt formatting and language feedback instructions in tools.py ([962b9f5](https://github.com///commit/962b9f5ecb7884f4b4d7a3f3bbca77a62390f038))
 
 ### Chore
 
-- update CHANGELOG.md with recent feature implementations and bug fixes ([5468738](https://github.com///commit/5468738e8572e52685f31430199b7b09e46f3fdb))
+- update CHANGELOG.md with recent feature implementations and bug fixes ([1269600](https://github.com///commit/12696007d70a53833ba8dcbc657da3949178413c))
 - update CHANGELOG.md with recent feature additions for couple parameter handling ([7c423fa](https://github.com///commit/7c423faccfd98f2c8e3e0f98b2c9302aea8d3ccb))
 - update CHANGELOG.md with recent feature additions for male and female parameter forms ([4a17c1e](https://github.com///commit/4a17c1ed72cbe9926fb9784db773e8f3321a1d93))
 - update CHANGELOG.md with recent feature additions for parameter input and display ([e0fceb3](https://github.com///commit/e0fceb3395902996663d811df45727dbb037278a))
