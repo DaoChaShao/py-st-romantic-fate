@@ -8,8 +8,8 @@
 
 from openai import OpenAI
 from streamlit import (empty, header, selectbox, text_input, caption, slider,
-                       sidebar, segmented_control, form, form_submit_button, number_input,
-                       )
+                       sidebar, segmented_control, form, form_submit_button, date_input,
+                       time_input)
 from time import perf_counter
 
 
@@ -136,19 +136,25 @@ def parameters(message: empty) -> tuple[str, str, str, float, float]:
 
 
 def params_male():
-    """ Get the parameters from male's information """
+    """ Get the parameters from male's information
+
+    :return the parameters of getting from male's information
+    """
     with form("Male's Information", clear_on_submit=True, enter_to_submit=True):
-        name: str = text_input("NAME", placeholder="Enter the name", help="Enter the name")
+        name: str = text_input("MALE's NAME", placeholder="Enter the name", help="Enter the name")
         caption(f"The name you entered is **{name}**")
 
         options = ["Male", "Female"]
         gender: str = selectbox("GENDER", options, help="Select the gender", index=0, disabled=True)
         caption(f"The gender you selected is **{gender}**")
 
-        age: int = number_input("AGE", min_value=1, max_value=120, value=18, step=1, help="Enter the male's age")
-        caption(f"The age you entered is **{age}**")
+        date = date_input("The DATE OF MALE's BIRTH", value="today", max_value="today", help="Enter the date of birth")
+        caption(f"The date of male's birth is **{date}**")
 
-        location: str = text_input("LOCATION", placeholder="Enter the location", help="Enter the location")
+        time = time_input("THE TIME OF MALE's BIRTH", value="now", help="Enter the time of birth")
+        caption(f"The time of male's birth is **{time}**")
+
+        location: str = text_input("MALE's BIRTH LOCATION", placeholder="Enter the location", help="Enter the location")
         caption(f"The location you entered is **{location}**")
 
         submitted: bool = form_submit_button("Submit")
@@ -157,7 +163,8 @@ def params_male():
             male = {
                 "name": name,
                 "gender": gender,
-                "age": age,
+                "birth_data": date.isoformat(),
+                "birth_time": time.isoformat(),
                 "location": location
             }
             return male
@@ -165,19 +172,27 @@ def params_male():
 
 
 def params_female():
-    """ Get the parameters from male's information """
+    """ Get the parameters from male's information
+
+    :return: the parameters of getting from female's information
+    """
     with form("Female's Information", clear_on_submit=True, enter_to_submit=True):
-        name: str = text_input("NAME", placeholder="Enter the name", help="Enter the name")
+        name: str = text_input("FEMALE's NAME", placeholder="Enter the name", help="Enter the name")
         caption(f"The name you entered is **{name}**")
 
         options = ["Male", "Female"]
         gender: str = selectbox("GENDER", options, help="Select the gender", index=1, disabled=True)
         caption(f"The gender you selected is **{gender}**")
 
-        age: int = number_input("AGE", min_value=1, max_value=120, value=18, step=1, help="Enter the male's age")
-        caption(f"The age you entered is **{age}**")
+        date = date_input("The DATE OF FEMALE's BIRTH", value="today", max_value="today",
+                          help="Enter the date of birth")
+        caption(f"The date of male's birth is **{date}**")
 
-        location: str = text_input("LOCATION", placeholder="Enter the location", help="Enter the location")
+        time = time_input("THE TIME OF FEMALE's BIRTH", value="now", help="Enter the time of birth")
+        caption(f"The time of male's birth is **{time}**")
+
+        location: str = text_input("FEMALE's BIRTH LOCATION", placeholder="Enter the location",
+                                   help="Enter the location")
         caption(f"The location you entered is **{location}**")
 
         submitted: bool = form_submit_button("Submit")
@@ -186,8 +201,13 @@ def params_female():
             male = {
                 "name": name,
                 "gender": gender,
-                "age": age,
+                "birth_data": date.isoformat(),
+                "birth_time": time.isoformat(),
                 "location": location
             }
             return male
         return None
+
+
+def prompt_processor():
+    pass
