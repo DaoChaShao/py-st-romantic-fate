@@ -20,12 +20,14 @@
 
 ### Bug Fixes
 
+- correct elapsed time check in __repr__ method to handle None case ([1406781](https://github.com///commit/14067812e3690bd27214c1e61ac31d381dc6654e))
+- switch response model from Ollama to Deepseek in Fate Tell process ([047b51c](https://github.com///commit/047b51c40d63942dab0df2b0898a33141d09f271))
 - update regex in text processing to handle multiline content ([cb6daff](https://github.com///commit/cb6daffa7e8777f0d7f131a3a95bb521b026d995))
 - correct prompt formatting and language feedback instructions in tools.py ([962b9f5](https://github.com///commit/962b9f5ecb7884f4b4d7a3f3bbca77a62390f038))
 
 ### Chore
 
-- update CHANGELOG.md for version 0.1.0 release date change ([6ffb435](https://github.com///commit/6ffb4352eff6ca582c2bd326ee7055642dc3c0c0))
+- update CHANGELOG.md for version 0.1.0 release date change ([cdb0842](https://github.com///commit/cdb0842b077a030cfc0638f87ef4960ed3ca9b15))
 - update CHANGELOG.md with recent feature implementations and bug fixes ([1269600](https://github.com///commit/12696007d70a53833ba8dcbc657da3949178413c))
 - update CHANGELOG.md with recent feature additions for couple parameter handling ([7c423fa](https://github.com///commit/7c423faccfd98f2c8e3e0f98b2c9302aea8d3ccb))
 - update CHANGELOG.md with recent feature additions for male and female parameter forms ([4a17c1e](https://github.com///commit/4a17c1ed72cbe9926fb9784db773e8f3321a1d93))
