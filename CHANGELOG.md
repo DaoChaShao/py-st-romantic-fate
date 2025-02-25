@@ -5,6 +5,8 @@
 
 ### Features
 
+- enhance couple parameter handling with birth date, time inputs, and new prompt processing logic ([e28552a](https://github.com///commit/e28552acfe7114b4f76ff4fcce15057eff7be31d))
+- implement couple parameter handling and update fate telling logic in basic.py ([62be580](https://github.com///commit/62be580da95020f5574d11a81e1b80f516faac08))
 - update male and female parameter forms to include birth date and time inputs ([14b7f03](https://github.com///commit/14b7f03d16faec3d6f230ee836db2d83f005b53c))
 - add forms for male and female parameter input in tools.py ([f7bac2c](https://github.com///commit/f7bac2c818c627535d00350d9f61dab187e968df))
 - enhance basic.py with male and female parameter display in columns ([27c4808](https://github.com///commit/27c4808486ffcbc62bca0b60234fe5d72fd978b4))
@@ -16,7 +18,7 @@
 
 ### Chore
 
-- update CHANGELOG.md with recent feature additions for male and female parameter forms ([68a8c1a](https://github.com///commit/68a8c1a127e7e548ede072ebf90c7505474b1e6b))
+- update CHANGELOG.md with recent feature additions for male and female parameter forms ([4a17c1e](https://github.com///commit/4a17c1ed72cbe9926fb9784db773e8f3321a1d93))
 - update CHANGELOG.md with recent feature additions for parameter input and display ([e0fceb3](https://github.com///commit/e0fceb3395902996663d811df45727dbb037278a))
 - add CHANGELOG.md for version 0.1.0 with features, docs, and dependencies ([349254f](https://github.com///commit/349254fb6b079947aef0e147a5e4c15d9529c66d))
 
