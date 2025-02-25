@@ -5,6 +5,7 @@
 
 ### Features
 
+- update male and female parameter forms to include birth date and time inputs ([14b7f03](https://github.com///commit/14b7f03d16faec3d6f230ee836db2d83f005b53c))
 - add forms for male and female parameter input in tools.py ([f7bac2c](https://github.com///commit/f7bac2c818c627535d00350d9f61dab187e968df))
 - enhance basic.py with male and female parameter display in columns ([27c4808](https://github.com///commit/27c4808486ffcbc62bca0b60234fe5d72fd978b4))
 - add tools.py for model interaction and hyperparameter configuration ([b0c0e29](https://github.com///commit/b0c0e295022a9e013663a80de2e263ec449c7085))
@@ -15,6 +16,7 @@
 
 ### Chore
 
+- update CHANGELOG.md with recent feature additions for parameter input and display ([e0fceb3](https://github.com///commit/e0fceb3395902996663d811df45727dbb037278a))
 - add CHANGELOG.md for version 0.1.0 with features, docs, and dependencies ([349254f](https://github.com///commit/349254fb6b079947aef0e147a5e4c15d9529c66d))
 
 ### Docs
