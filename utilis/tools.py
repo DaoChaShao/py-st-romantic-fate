@@ -10,7 +10,7 @@ from datetime import datetime, date
 from ollama import chat
 from ollama import ChatResponse
 from openai import OpenAI
-from re import sub
+from re import sub, DOTALL
 from streamlit import (header, selectbox, text_input, caption, slider,
                        sidebar, segmented_control, form, form_submit_button, columns, subheader,
                        date_input, time_input, multiselect, session_state)
@@ -61,7 +61,7 @@ def text_suber(text: str) -> str:
     :param text: the text to be processed
     :return: the text without special characters
     """
-    return sub(r"<think></think>", "", text)
+    return sub(r"<think>.*?</think>", "", text, flags=DOTALL)
 
 
 def model_ollama(content: str, prompt: str):
