@@ -106,7 +106,7 @@ class Timer(object):
         self._elapsed = self._end - self._start
 
     def __repr__(self):
-        if self._elapsed is None:
+        if self._elapsed is not None:
             return f"{self._description} elapsed: {self._elapsed:.{self._precision}f} seconds"
         else:
             return f"{self._description} is failed to count"
