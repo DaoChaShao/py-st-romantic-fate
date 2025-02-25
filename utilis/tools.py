@@ -312,6 +312,6 @@ def prompt_processor(role: str, male: dict, female: dict, command: str, language
 
     prompt: str = (f"{role} "
                    f"{instructions} "
-                   f"When giving suggestions,, you should follow the {formate} and {constraints}. "
-                   f"You should also take {language} into account.")
+                   f"When giving suggestions, you should follow the {formate} and {constraints}. "
+                   f"You should give the feedback in {language}.")
     return prompt
