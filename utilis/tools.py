@@ -8,7 +8,8 @@
 
 from openai import OpenAI
 from streamlit import (empty, header, selectbox, text_input, caption, slider,
-                       sidebar, segmented_control, button, expander)
+                       sidebar, segmented_control, form, form_submit_button, number_input,
+                       )
 from time import perf_counter
 
 
@@ -132,3 +133,61 @@ def parameters(message: empty) -> tuple[str, str, str, float, float]:
             caption("Please enter the API key.")
 
         return model, api_key, role, temperature, top_p
+
+
+def params_male():
+    """ Get the parameters from male's information """
+    with form("Male's Information", clear_on_submit=True, enter_to_submit=True):
+        name: str = text_input("NAME", placeholder="Enter the name", help="Enter the name")
+        caption(f"The name you entered is **{name}**")
+
+        options = ["Male", "Female"]
+        gender: str = selectbox("GENDER", options, help="Select the gender", index=0, disabled=True)
+        caption(f"The gender you selected is **{gender}**")
+
+        age: int = number_input("AGE", min_value=1, max_value=120, value=18, step=1, help="Enter the male's age")
+        caption(f"The age you entered is **{age}**")
+
+        location: str = text_input("LOCATION", placeholder="Enter the location", help="Enter the location")
+        caption(f"The location you entered is **{location}**")
+
+        submitted: bool = form_submit_button("Submit")
+
+        if submitted:
+            male = {
+                "name": name,
+                "gender": gender,
+                "age": age,
+                "location": location
+            }
+            return male
+        return None
+
+
+def params_female():
+    """ Get the parameters from male's information """
+    with form("Female's Information", clear_on_submit=True, enter_to_submit=True):
+        name: str = text_input("NAME", placeholder="Enter the name", help="Enter the name")
+        caption(f"The name you entered is **{name}**")
+
+        options = ["Male", "Female"]
+        gender: str = selectbox("GENDER", options, help="Select the gender", index=1, disabled=True)
+        caption(f"The gender you selected is **{gender}**")
+
+        age: int = number_input("AGE", min_value=1, max_value=120, value=18, step=1, help="Enter the male's age")
+        caption(f"The age you entered is **{age}**")
+
+        location: str = text_input("LOCATION", placeholder="Enter the location", help="Enter the location")
+        caption(f"The location you entered is **{location}**")
+
+        submitted: bool = form_submit_button("Submit")
+
+        if submitted:
+            male = {
+                "name": name,
+                "gender": gender,
+                "age": age,
+                "location": location
+            }
+            return male
+        return None
