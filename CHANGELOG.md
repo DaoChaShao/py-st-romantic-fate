@@ -27,6 +27,7 @@
 
 ### Chore
 
+- add README.md with usage instructions for the application ([f78dfe4](https://github.com///commit/f78dfe4d9e719c120691122098cdacde7ef59ed6))
 - update CHANGELOG.md to include recent bug fixes and version 0.1.0 release date change ([5a6f669](https://github.com///commit/5a6f669a3f5ddfe65852f6489771eb48757f8d57))
 - update CHANGELOG.md for version 0.1.0 release date change ([cdb0842](https://github.com///commit/cdb0842b077a030cfc0638f87ef4960ed3ca9b15))
 - update CHANGELOG.md with recent feature implementations and bug fixes ([1269600](https://github.com///commit/12696007d70a53833ba8dcbc657da3949178413c))
