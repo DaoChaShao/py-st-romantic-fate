@@ -45,8 +45,8 @@ else:
                 with spinner("Fate Tell is thinking...", show_time=True):
                     with Timer(description="Fate Tell process") as timer:
                         prompt: str = prompt_processor(sys_content, male, female, command, language, methods)
-                        # response: str = model_deepseek(model_name, api_key, temperature, top_p, sys_content, prompt)
-                        response: str = model_ollama(sys_content, prompt)
+                        response: str = model_deepseek(model_name, api_key, temperature, top_p, sys_content, prompt)
+                        # response: str = model_ollama(sys_content, prompt)
                         markdown(response)
                         balloons()
                     empty_message.info(timer)
